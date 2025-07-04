@@ -1,0 +1,10 @@
+[
+  {
+    "key": "JAS-1",
+    "summary": "Setup project repo",
+    "description": "Create GitHub repo and initialize README",
+    "status": "To Do",
+    "assignee": "Rikhil Pasula",
+    "created": "2025-07-01T12:34:56.000+0000"
+  }
+]
