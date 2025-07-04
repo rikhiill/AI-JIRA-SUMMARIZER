@@ -1,10 +1,16 @@
 services:
   - type: web
     name: jira-ai-backend
-    env: python
-    plan: free
-    buildCommand: ""
+    runtime: python
+    buildCommand: pip install -r requirements.txt
     startCommand: python app.py
     envVars:
-      - key: FLASK_ENV
-        value: production
+      - key: JIRA_URL
+        value: https://yourcompany.atlassian.net
+      - key: EMAIL
+        value: your@email.com
+      - key: API_TOKEN
+        value: your_api_token
+      - key: PROJECT_KEY
+        value: AI
+    pythonVersion: 3.10
