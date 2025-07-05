@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ai-jira-summarizer
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python backend/app.py
+    envVars:
+      - key: JIRA_URL
+        value: https://rikhilrajkumar.atlassian.net
+      - key: EMAIL
+        value: pasularikhilrj0418@email.com
+      - key: API_TOKEN
+        value: your_api_token
+      - key: PROJECT_KEY
+        value: JAS
+    pythonVersion: 3.10
