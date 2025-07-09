@@ -9,12 +9,17 @@ import io
 from datetime import timedelta
 from datetime import datetime
 import csv
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
 CORS(app)
 bcrypt = Bcrypt(app)
 
 LOG_FILE = "download_log.csv"
+
+JIRA_TOKEN = os.getenv("JIRA_API_TOKEN")
 
 app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # secure this in production!
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
