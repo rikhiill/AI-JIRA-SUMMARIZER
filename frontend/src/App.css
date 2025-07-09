@@ -1,38 +1,773 @@
+/* ========================= */
+/* ✅ GENERAL STRUCTURE */
+/* ========================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: #f4f6fc;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ========================= */
+/* ✅ DARK MODE OVERRIDES */
+/* ========================= */
+body.dark-mode {
+  background-color: #242424;
+  color: #ddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ========================= */
+/* ✅ INPUTS & BUTTONS */
+/* ========================= */
+input,
+select {
+  background-color: #ffffff;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button {
+  transition: background 0.3s ease;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+/* ========================= */
+/* ✅ TABLE STYLES */
+/* ========================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  color: #111;
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f0f0f0;
+}
+
+table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+body.dark-mode table {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode table th,
+body.dark-mode table td {
+  color: #ddd;
+  border: 1px solid #333;
+}
+
+body.dark-mode table th {
+  background-color: #222;
+}
+
+body.dark-mode table tr:nth-child(even) {
+  background-color: #1e1e1e;
+}
+
+/* ========================= */
+/* ✅ SCROLLBAR */
+/* ========================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* ========================= */
+/* ✅ AUTH PAGES (Login/Signup) */
+/* ========================= */
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.auth-container input {
+  margin-bottom: 15px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.auth-container button:hover {
+  background-color: #3e8e41;
+}
+
+.auth-note {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.auth-note a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+body.dark-mode .auth-container {
+  background: #1c1c1c;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .auth-note {
+  color: #aaa;
+}
+
+body.dark-mode .auth-note a {
+  color: #66b2ff;
+}
+
+/* ========================= */
+/* ✅ DASHBOARD COMPONENT */
+/* ========================= */
+.dashboard-container {
+  padding: 40px;
+  max-width: 960px;
+  margin: 40px auto;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 12px;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+}
+
+.logout-btn {
+  padding: 10px 16px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.summary-list {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+}
+
+.summary-card {
+  padding: 16px;
+  background: #f1f1f1;
+  border-radius: 8px;
+  border-left: 5px solid #4CAF50;
+}
+
+body.dark-mode .dashboard-container {
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+body.dark-mode .summary-card {
+  background-color: #2a2a2a;
+  border-left-color: #81c784;
+}
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #ffffff;
+  padding: 16px 30px;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+body.dark-mode .navbar {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.03);
+}
+
+
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.user-info {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333; /* Improved contrast for light mode */
+  background-color: #e0f2f1; /* Light teal background */
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode .user-info {
+  color: #fff;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+}
+
+
+
+/* Grid layout for cards */
+.summary-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 20px;
+}
+
+/* Fancy card */
+.fancy-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease;
+}
+.fancy-card:hover {
+  transform: translateY(-5px);
+}
+body.dark-mode .fancy-card {
+  background: #222;
+  color: #ddd;
+}
+
+/* Header with status */
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.summary-text {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.summary-footer {
+  font-size: 13px;
+  color: #555;
+}
+body.dark-mode .summary-footer {
+  color: #bbb;
+}
+
+/* Status badges */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
   color: white;
+  text-transform: uppercase;
+}
+.status-badge.to-do {
+  background-color: #607d8b;
+}
+.status-badge.in-progress {
+  background-color: #ff9800;
+}
+.status-badge.done {
+  background-color: #4caf50;
 }
 
-.App-link {
-  color: #61dafb;
+/* Top bar with summary and download */
+.top-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 20px 0;
+}
+.smart-summary {
+  font-size: 16px; color: #555;
+}
+.download-buttons .download-btn {
+  margin-left: 8px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1976d2;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+.download-buttons .download-btn:hover {
+  background-color: #1565c0;
 }
 
-@keyframes App-logo-spin {
+/* Status cards */
+.status-cards {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.status-card {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: #fefefe;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  flex: 1;
+  text-align: center;
+}
+body.dark-mode .status-card {
+  background: #2a2a2a;
+}
+.status-title {
+  font-size: 14px;
+  color: #777;
+}
+.status-count {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+/* Issue card footer actions */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+.action-buttons button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.pagination-controls {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.pagination-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1976d2;
+  color: white;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+.raw-info {
+  margin-top: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+body.dark-mode .raw-info {
+  background: #2c2c2c;
+}
+/* Animate summary card on load */
+.fancy-card {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.fancy-card:hover {
+  transform: scale(1.015);
+  background-color: #f8f8f8;
+}
+
+body.dark-mode .fancy-card:hover {
+  background-color: #2c2c2c;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .download-buttons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .status-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .summary-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}
+.fancy-card {
+  animation: fadeIn 0.4s ease-in forwards;
+  opacity: 0;
+}
+
+/* 📱 Responsive Grid Behavior */
+@media screen and (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .download-buttons {
+    flex-wrap: wrap;
+  }
+
+  .status-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr; /* stack cards */
+  }
+
+  .summary-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-container {
+    padding: 20px;
+  }
+
+  input[type="text"],
+  select {
+    width: 100% !important;
+  }
+}
+
+/* ✅ Final Fix for .brand (Title) */
+.brand {
+  background-color: #4caf50; /* Material Green */
+  color: #fff !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .brand {
+  background-color: #43a047;
+  color: #fff !important;
+}
+
+.brand:hover {
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  transform: scale(1.02);
+}
+
+/* ✅ Enhanced .user-info Button Styling */
+.user-info {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  background-color: #e0f7fa;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode .user-info {
+  color: #eee;
+  background-color: #333;
+  border: 1px solid #555;
+}
+
+/* ✅ Improved Theme Select Styling */
+.theme-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #f1f8e9;
+  color: #222;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode .theme-select {
+  background-color: #2e2e2e;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Hover Effects */
+.user-info:hover,
+.theme-select:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* ✅ Assignee Badge */
+.assignee-badge {
+  display: inline-block;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: 1px solid #c8e6c9;
+}
+
+body.dark-mode .assignee-badge {
+  background-color: #33691e;
+  color: #fff;
+  border: 1px solid #558b2f;
+}
+
+.spinner {
+  border: 6px solid #eee;
+  border-top: 6px solid #4caf50;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+mark {
+  background-color: #ffff88;
+  padding: 0 3px;
+  border-radius: 3px;
+}
+body.dark-mode mark {
+  background-color: #ffee58;
+}
+
+.raw-info {
+  background: rgba(0, 0, 0, 0.03);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+
+  transition: all 0.4s ease;
+  animation: slideFade 0.4s ease;
+  overflow: hidden;
+}
+
+@keyframes slideFade {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(-5px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+body.dark-mode .raw-info {
+  background: #2c2c2c;
+}
+
+/* Expandable wrapper with max-height transition */
+.raw-info-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+/* When open, allow it to grow + fade in */
+.raw-info-wrapper.open {
+  max-height: 500px; /* allow enough height for content */
+  opacity: 1;
+}
+
+/* Raw info content still styled normally */
+.raw-info {
+  background: rgba(0, 0, 0, 0.03);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+body.dark-mode .raw-info {
+  background: #2c2c2c;
+}
+
+textarea {
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #ccc;
+}
+
+body.dark-mode textarea {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.download-info {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* Smooth raw toggle */
+.raw-info-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.raw-info-wrapper.open {
+  max-height: 300px; /* adjust as needed */
+  padding-top: 10px;
+}
+
+/* Subtle card animation */
+.summary-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Button polish */
+.action-buttons button {
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+.action-buttons button:hover {
+  transform: scale(1.1);
+}
+
+/* Highlighted search terms */
+mark {
+  background-color: #ffe58f;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.summary-grid {
+  scrollbar-width: thin;
+  scrollbar-color: #aaa #f2f2f2;
+}
+.summary-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.summary-grid::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 8px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
 }

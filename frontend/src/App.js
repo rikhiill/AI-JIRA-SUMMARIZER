@@ -1,48 +1,37 @@
+// src/App.js
 import React from 'react';
-import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './Login';
+import Signup from './Signup';
+import Dashboard from './Dashboard';
+
+// ✅ Route guard to check if JWT token exists
+const isAuthenticated = () => {
+  return !!localStorage.getItem("jwt_token");
+};
 
 function App() {
-  const handleDownload = (type) => {
-    window.open(`http://localhost:5000/download/${type}`, '_blank');
-  };
-
   return (
-    <div className="App" style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1 style={{ marginBottom: "30px" }}>📊 AI Jira Summarizer Reports</h1>
+    <BrowserRouter>
+      <Routes>
+        {/* 🚪 Default route */}
+        <Route path="/" element={<Navigate to={isAuthenticated() ? "/dashboard" : "/login"} />} />
 
-      <button
-        style={btnStyle}
-        onClick={() => handleDownload('pdf')}
-      >
-        📄 Download PDF
-      </button>
+        {/* 📝 Public Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-      <button
-        style={btnStyle}
-        onClick={() => handleDownload('csv')}
-      >
-        📊 Download CSV
-      </button>
+        {/* 🔒 Protected Dashboard */}
+        <Route
+          path="/dashboard"
+          element={isAuthenticated() ? <Dashboard /> : <Navigate to="/login" />}
+        />
 
-      <button
-        style={btnStyle}
-        onClick={() => handleDownload('json')}
-      >
-        🧾 Download JSON
-      </button>
-    </div>
+        {/* 🚫 Fallback to Login if route not found */}
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-const btnStyle = {
-  margin: '10px',
-  padding: '12px 25px',
-  background: '#4CAF50',
-  color: 'white',
-  border: 'none',
-  borderRadius: '8px',
-  cursor: 'pointer',
-  fontSize: '16px'
-};
 
 export default App;
