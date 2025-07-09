@@ -5,5 +5,5 @@ __pycache__/
 *.log
 backend/config.json
 backend/users.json
-frontend/venv/
+-frontend/venv/
 " > .gitignore
