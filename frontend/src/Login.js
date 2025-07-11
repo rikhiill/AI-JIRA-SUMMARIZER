@@ -19,7 +19,8 @@ function Login() {
         body: JSON.stringify({ username, password })
       });
 
-      const data = await res.json();
+        const text = await res.text();
+        const data = text ? JSON.parse(text) : {};
 
       if (res.ok) {
         localStorage.setItem('jwt_token', data.access_token);
@@ -27,7 +28,7 @@ function Login() {
         alert("✅ Login successful!");
         navigate('/dashboard');
       } else {
-        alert(`❌ Login failed: ${data.error}`);
+        alert(`❌ Login failed: ${data.error || 'Unknown error'}`);
       }
     } catch (err) {
       alert("❌ Login error: " + err.message);

@@ -27,7 +27,8 @@ function Signup() {
         body: JSON.stringify({ username, password })
       });
 
-      const data = await res.json();
+        const text = await res.text();
+        const data = text ? JSON.parse(text) : {};
 
       if (res.ok) {
         localStorage.setItem('jwt_token', data.access_token);
@@ -35,7 +36,7 @@ function Signup() {
         alert("✅ Signup successful!");
         navigate('/dashboard');
       } else {
-        alert(`❌ Signup failed: ${data.error}`);
+        alert(`❌ Signup failed: ${data.error || 'Unknown error'}`);
       }
     } catch (err) {
       alert(`❌ Signup error: ${err.message}`);
