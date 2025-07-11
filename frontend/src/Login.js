@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const backendURL = process.env.REACT_APP_BACKEND_URL;
 
-function Login() {
+function Login({ setAuth }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -24,7 +24,8 @@ function Login() {
 
       if (res.ok) {
         localStorage.setItem('jwt_token', data.access_token);
-        localStorage.setItem('user', username); // ✅ Save username
+        localStorage.setItem('user', username); 
+        setAuth(true);// ✅ Save username
         alert("✅ Login successful!");
         navigate('/dashboard');
       } else {
