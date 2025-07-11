@@ -74,22 +74,20 @@ def signup():
     if not username or not password:
         return jsonify({"error": "Username and password required"}), 400
 
-    # Load existing users
-    with open('backend/users.json', 'r+') as f:
+    # ✅ Correct users file path
+    with open(USERS_FILE, 'r+') as f:
         users = json.load(f)
 
         if username in users:
             return jsonify({"error": "User already exists"}), 409
 
-        users[username] = generate_password_hash(password)
+        users[username] = bcrypt.generate_password_hash(password).decode('utf-8')
         f.seek(0)
-        json.dump(users, f)
+        json.dump(users, f, indent=2)
         f.truncate()
 
     access_token = create_access_token(identity=username)
-    return jsonify({"access_token": access_token}), 200
-
-
+    return jsonify(access_token=access_token), 200
 
 
 @app.route("/verify-token", methods=["GET"])
