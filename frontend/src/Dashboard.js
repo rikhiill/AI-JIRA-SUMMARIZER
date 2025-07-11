@@ -22,6 +22,8 @@ import Navbar from './Navbar';
 import Toast from './Toast';
 import './App.css';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 function Dashboard() {
   // ===============================
   // ✅ STATE VARIABLES
@@ -72,7 +74,7 @@ function Dashboard() {
     if (!token) return navigate('/login');
     setUsername(storedUser);
 
-    fetch('http://localhost:5000/api/summary', {
+    fetch(`${backendURL}/api/summary`, {
       headers: { Authorization: 'Bearer ' + token }
     })
       .then(async (res) => {
@@ -133,7 +135,7 @@ function Dashboard() {
   // ===============================
   const handleDownload = async (type) => {
     try {
-      const win = window.open(`http://localhost:5000/download/${type}`, '_blank');
+      const win = window.open(`${backendURL}/download/${type}`, '_blank');
       if (win) {
         setToast({ type: 'success', message: `📥 ${type.toUpperCase()} download logged!` });
       } else {
