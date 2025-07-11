@@ -3,9 +3,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const backendURL = process.env.REACT_APP_BACKEND_URL;
+
 function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+ 
+
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
@@ -17,7 +21,7 @@ function Signup() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/signup', {
+      const res = await fetch(`${backendURL}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
