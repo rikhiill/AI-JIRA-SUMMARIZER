@@ -65,7 +65,7 @@ def login():
     return jsonify(access_token=token), 200
 
 
-@app.route("/signup", methods=["POST"])
+@app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
     username = data.get("username")
@@ -74,25 +74,21 @@ def signup():
     if not username or not password:
         return jsonify({"error": "Username and password required"}), 400
 
-    # Load existing users or create new file
-    if not os.path.exists(USERS_FILE):
-        os.makedirs("data", exist_ok=True)
-        users = {}
-    else:
-        with open(USERS_FILE, "r") as f:
-            users = json.load(f)
+    # Load existing users
+    with open('backend/users.json', 'r+') as f:
+        users = json.load(f)
 
-    if username in users:
-        return jsonify({"error": "User already exists"}), 409
+        if username in users:
+            return jsonify({"error": "User already exists"}), 409
 
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-    users[username] = hashed_password
+        users[username] = generate_password_hash(password)
+        f.seek(0)
+        json.dump(users, f)
+        f.truncate()
 
-    with open(USERS_FILE, "w") as f:
-        json.dump(users, f, indent=2)
+    access_token = create_access_token(identity=username)
+    return jsonify({"access_token": access_token}), 200
 
-    token = create_access_token(identity=username)
-    return jsonify(access_token=token), 200
 
 
 

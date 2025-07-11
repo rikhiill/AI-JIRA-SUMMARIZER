@@ -157,7 +157,7 @@ function Dashboard() {
     const updated = summaries.filter(s => s.key !== key);
     setSummaries(updated);
     setAllSummaries(allSummaries.filter(s => s.key !== key));
-    fetch('http://localhost:5000/api/update-summary', {
+    fetch(`${backendURL}/api/update-summary`, {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
@@ -173,7 +173,7 @@ function Dashboard() {
     setAllSummaries(updated);
     setSummaries(updated);
     setExpandedEditCard(null);
-    fetch('http://localhost:5000/api/update-summary', {
+    fetch(`${backendURL}/api/update-summary`, {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('jwt_token'),
