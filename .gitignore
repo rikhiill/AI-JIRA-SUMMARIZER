@@ -1,9 +1,16 @@
-echo ".env
+# Ignore Python virtual environments
 venv/
 __pycache__/
 *.pyc
 *.log
+
+# Backend specific
 backend/config.json
 backend/users.json
--frontend/venv/
-" > .gitignore
+
+# Frontend specific
+frontend/venv/
+frontend/.env
+
+# Ignore frontend build artifacts (optional for cleaner repo)
+frontend/build/
