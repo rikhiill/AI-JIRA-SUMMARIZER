@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://ai-jira-summarizer.vercel.app"])
 bcrypt = Bcrypt(app)
 
 LOG_FILE = "download_log.csv"
