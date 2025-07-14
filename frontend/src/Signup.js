@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const backendURL = process.env.REACT_APP_BACKEND_URL;
+const backendURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000"; // Fallback for local development
 
 function Signup({ setAuth}) {
   const [username, setUsername] = useState('');

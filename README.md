@@ -1,0 +1,47 @@
+🔷 Project Overview
+
+# AI-Based Jira Summarizer 🧠📊
+
+An AI-powered tool that fetches Jira issues, generates intelligent summaries using NLP, and produces downloadable reports (PDF, CSV, JSON). Includes user authentication, status filters, smart dashboards, and beautiful UI.
+
+
+🔧 Tech Stack
+
+- 🧠 GPT/NLP (summarization)
+- ⚙️ Flask + JWT (backend)
+- 💾 JSON File Storage
+- 🎨 React + Tailwind (frontend)
+- 🔐 Authentication with JWT
+- ☁️ Hosted on Render + Vercel
+
+
+🚀 Live Demo Links
+
+- 🌐 Frontend: [ai-jira-summarizer.vercel.app](https://ai-jira-summarizer.vercel.app)
+- 🔗 Backend API: [ai-jira-summarizer1.onrender.com](https://ai-jira-summarizer1.onrender.com)
+
+
+👨‍💻 Local Setup Instructions
+
+
+git clone https://github.com/rikhiill/AI-JIRA-SUMMARIZER.git
+cd AI-JIRA-SUMMARIZER
+
+# Setup backend
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+# Create .env and add:
+# JIRA_API_TOKEN=your-token-here
+# Run
+python app.py
+
+# Setup frontend
+cd ../frontend
+npm install
+# .env file
+REACT_APP_BACKEND_URL=http://localhost:5000s
+npm start
+
+

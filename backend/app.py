@@ -14,12 +14,12 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
-CORS(app, origins=["https://ai-jira-summarizer.vercel.app"])
+CORS(app, origins=["https://ai-jira-summarizer.vercel.app", "http://localhost:3000"], supports_credentials=True)
 bcrypt = Bcrypt(app)
 
 LOG_FILE = "download_log.csv"
 
-JIRA_TOKEN = os.getenv("JIRA_API_TOKEN")
+JIRA_TOKEN = os.getenv("JIRA_API_TOKEN", "fallback-if-missing")
 
 app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # secure this in production!
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
@@ -192,4 +192,4 @@ def download_file(file_type):
 # --- Main Runner ---
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=False)

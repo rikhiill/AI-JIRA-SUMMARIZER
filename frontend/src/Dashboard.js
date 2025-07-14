@@ -22,7 +22,7 @@ import Navbar from './Navbar';
 import Toast from './Toast';
 import './App.css';
 
-const backendURL = process.env.REACT_APP_BACKEND_URL;
+const backendURL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 function Dashboard() {
   // ===============================
