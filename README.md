@@ -31,6 +31,19 @@ An AI-powered tool that fetches Jira issues, generates intelligent summaries usi
 - 🔗 Backend API: [ai-jira-summarizer1.onrender.com](https://ai-jira-summarizer1.onrender.com)
 
 
+✨ Features
+
+- 🔐 **JWT-based Login/Signup**
+- 🧠 **AI Summary Generation (LSA or GPT)**
+- 🎨 **Smart Dashboard with Status Filters**
+- ✏️ **Edit/Delete/Search Summaries**
+- 📥 **Download Reports in PDF, CSV, JSON, ZIP**
+- 📊 **Smart Summary Analytics**
+- 🌙 **Dark/Light Theme Toggle**
+- 📱 **Mobile Responsive UI**
+
+
+
 👨‍💻 Local Setup Instructions
 
 
@@ -39,9 +52,13 @@ cd AI-JIRA-SUMMARIZER
 
 # Setup backend
 cd backend
+
 python -m venv venv
+
 venv\Scripts\activate
+
 pip install -r requirements.txt
+
 # Create .env and add:
 # JIRA_API_TOKEN=your-token-here
 # Run
