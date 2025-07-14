@@ -14,6 +14,16 @@ An AI-powered tool that fetches Jira issues, generates intelligent summaries usi
 - 🔐 Authentication with JWT
 - ☁️ Hosted on Render + Vercel
 
+| Layer        | Tech                     |
+|--------------|--------------------------|
+| Frontend     | React, Tailwind, Vercel  |
+| Backend      | Flask, JWT, Render       |
+| Auth         | JWT + bcrypt             |
+| Storage      | JSON + FileSystem        |
+| NLP/AI       | LSA (or GPT via API)     |
+| Reporting    | PDF, CSV, JSON, ZIP      |
+
+
 
 🚀 Live Demo Links
 
